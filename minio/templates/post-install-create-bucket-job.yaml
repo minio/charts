@@ -23,6 +23,10 @@ spec:
 {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | indent 8 }}
 {{- end }}
+{{- if .Values.makeBucketJob.podAnnotations }}
+      annotations:
+{{ toYaml .Values.makeBucketJob.podAnnotations | indent 8 }}
+{{- end }}
     spec:
       restartPolicy: OnFailure
 {{- include "minio.imagePullSecrets" . | indent 6 }}
