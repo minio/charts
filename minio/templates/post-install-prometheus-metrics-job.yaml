@@ -23,9 +23,9 @@ spec:
 {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | indent 8 }}
 {{- end }}
-{{- if .Values.makeBucketJob.podAnnotations }}
+{{- if .Values.updatePrometheusJob.podAnnotations }}
       annotations:
-{{ toYaml .Values.makeBucketJob.podAnnotations | indent 8 }}
+{{ toYaml .Values.updatePrometheusJob.podAnnotations | indent 8 }}
 {{- end }}
     spec:
 {{- if .Values.serviceAccount.create }}
