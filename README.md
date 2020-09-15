@@ -64,6 +64,32 @@ To update your MinIO server configuration while it is deployed in a release, you
 
 You can also check the history of upgrades to a release using `helm history my-release`. Replace `my-release` with the actual release name.
 
+### Installing certificates from third party CAs
+
+MinIO can connect to other servers, including MinIO nodes or other server types such as NATs and Redis. If these servers use certificates that were not registered with a known CA, add trust for these certificates to MinIO Server by bundling these certificates into a Kubernetes secret and providing it to Helm via the `trustedCertsSecret` value. If `.Values.tls.enabled` is `true` and you're installing certificates for third party CAs, remember to include Minio's own certificate with key `public.crt`, if it also needs to be trusted.
+
+For instance, given that TLS is enabled and you need to add trust for Minio's own CA and for the CA of a Keycloak server, a Kubernetes secret can be created from the certificate files using `kubectl`:
+
+```
+kubectl -n minio create secret generic minio-trusted-certs --from-file=public.crt --from-file=keycloak.crt
+```
+
+If TLS is not enabled, you would need only the third party CA:
+
+```
+kubectl -n minio create secret generic minio-trusted-certs --from-file=keycloak.crt
+```
+
+The name of the generated secret can then be passed to Helm using a values file or the `--set` parameter:
+
+```
+trustedCertsSecret: "minio-trusted-certs"
+
+or
+
+--set trustedCertsSecret=minio-trusted-certs
+```
+
 Uninstalling the Chart
 ----------------------
 
@@ -119,6 +145,7 @@ The following table lists the configurable parameters of the MinIO chart and the
 | `ingress.annotations`                            | Ingress annotations                                                                                                                     | `{}`                             |
 | `ingress.hosts`                                  | Ingress accepted hostnames                                                                                                              | `[]`                             |
 | `ingress.tls`                                    | Ingress TLS configuration                                                                                                               | `[]`                             |
+| `trustedCertsSecret`                             | Kubernetes secret with trusted certificates to be mounted on `{{ .Values.certsPath }}/CAs`                                              | `""`                             |
 | `mode`                                           | MinIO server mode (`standalone` or `distributed`)                                                                                       | `standalone`                     |
 | `extraArgs`                                      | Additional command line arguments to pass to the MinIO server                                                                           | `[]`                             |
 | `replicas`                                       | Number of nodes (applicable only for MinIO distributed mode).                                                                           | `4`                              |

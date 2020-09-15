@@ -88,6 +88,12 @@ tls:
   publicCrt: public.crt
   privateKey: private.key
 
+## Trusted Certificates Settings for Minio. Ref: https://docs.minio.io/docs/how-to-secure-access-to-minio-server-with-tls#install-certificates-from-third-party-cas
+## Bundle multiple trusted certificates into one secret and pass that here. Ref: https://github.com/minio/minio/tree/master/docs/tls/kubernetes#2-create-kubernetes-secret
+## When using self-signed certificates, remember to include Minio's own certificate in the bundle with key public.crt.
+## If certSecret is left empty and tls is enabled, this chart installs the public certificate from .Values.tls.certSecret.
+trustedCertsSecret: ""
+
 ## Enable persistence using Persistent Volume Claims
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##

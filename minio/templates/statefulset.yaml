@@ -108,10 +108,7 @@ spec:
               {{- end }}
             {{- end }}
             {{- end }}
-            {{- if .Values.tls.enabled }}
-            - name: cert-secret-volume
-              mountPath: {{ .Values.certsPath }}
-            {{ end }}
+            {{- include "minio.tlsKeysVolumeMount" . | indent 12 }}
           ports:
             {{- if .Values.tls.enabled }}
             - name: https
@@ -171,18 +168,7 @@ spec:
         - name: minio-user
           secret:
             secretName: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
-        {{- if .Values.tls.enabled }}
-        - name: cert-secret-volume
-          secret:
-            secretName: {{ .Values.tls.certSecret }}
-            items:
-            - key: {{ .Values.tls.publicCrt }}
-              path: public.crt
-            - key: {{ .Values.tls.privateKey }}
-              path: private.key
-            - key: {{ .Values.tls.publicCrt }}
-              path: CAs/public.crt
-        {{ end }}
+        {{- include "minio.tlsKeysVolume" . | indent 8 }}
 {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
   {{- if gt $drivesPerNode 1 }}
