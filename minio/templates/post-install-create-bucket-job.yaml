@@ -42,6 +42,12 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
 {{- end }}
+{{- if .Values.makeBucketJob.securityContext.enabled }}
+      securityContext:
+        runAsUser: {{ .Values.makeBucketJob.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.makeBucketJob.securityContext.runAsGroup }}
+        fsGroup: {{ .Values.makeBucketJob.securityContext.fsGroup }}
+{{- end }}
       volumes:
         - name: minio-configuration
           projected:

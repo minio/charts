@@ -1,7 +1,7 @@
 apiVersion: v1
 description: High Performance, Kubernetes Native Object Storage
 name: minio
-version: 6.1.2
+version: 6.2.0
 appVersion: master
 keywords:
 - storage

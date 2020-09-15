@@ -45,6 +45,12 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
 {{- end }}
+{{- if .Values.updatePrometheusJob.securityContext.enabled }}
+      securityContext:
+        runAsUser: {{ .Values.updatePrometheusJob.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.updatePrometheusJob.securityContext.runAsGroup }}
+        fsGroup: {{ .Values.updatePrometheusJob.securityContext.fsGroup }}
+{{- end }}
       volumes:
         - name: workdir
           emptyDir: {}
@@ -55,7 +61,7 @@ spec:
           command:
             - /bin/sh
             - "-c"
-            - mc admin prometheus generate target --json --no-color -q > /workdir/mc.json
+            - mc --config-dir {{ .Values.configPathmc }} admin prometheus generate target --json --no-color -q > /workdir/mc.json
           env:
             # mc admin prometheus generate don't really connect to remote server, TLS cert isn't required
             - name: MC_HOST_target

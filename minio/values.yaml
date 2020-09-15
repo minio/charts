@@ -237,11 +237,21 @@ buckets: []
 makeBucketJob:
   podAnnotations:
   annotations:
+  securityContext:
+    enabled: false
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
 
 ## Additional Annotations for the Kubernetes Batch (update-prometheus-secret)
 updatePrometheusJob:
   podAnnotations:
   annotations:
+  securityContext:
+    enabled: false
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
 
 s3gateway:
   enabled: false
