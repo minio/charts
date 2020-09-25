@@ -83,5 +83,5 @@ spec:
             mountPath: {{ .Values.configPathmc }}certs
           {{ end }}
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+{{ toYaml .Values.makeBucketJob.resources | indent 10 }}
 {{- end }}

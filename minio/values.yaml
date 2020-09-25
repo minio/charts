@@ -235,6 +235,9 @@ makeBucketJob:
     runAsUser: 1000
     runAsGroup: 1000
     fsGroup: 1000
+  resources:
+    requests:
+      memory: 128Mi
 
 ## Additional Annotations for the Kubernetes Batch (update-prometheus-secret)
 updatePrometheusJob:
