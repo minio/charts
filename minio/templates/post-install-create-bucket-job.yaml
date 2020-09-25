@@ -61,7 +61,7 @@ spec:
           secret:
             secretName: {{ .Values.tls.certSecret }}
             items:
-            - key: {{ .Values.tls.publicCrt }}
+            - key: {{ .Values.tls.caCrt }}
               path: CAs/public.crt
         {{ end }}
       serviceAccountName: {{ include "minio.serviceAccountName" . | quote }}

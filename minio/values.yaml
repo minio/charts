@@ -87,6 +87,7 @@ tls:
   certSecret: ""
   publicCrt: public.crt
   privateKey: private.key
+  caCrt: public.crt
 
 ## Enable persistence using Persistent Volume Claims
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
