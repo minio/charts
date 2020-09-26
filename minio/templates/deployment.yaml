@@ -59,12 +59,6 @@ spec:
       priorityClassName: "{{ .Values.priorityClassName }}"
   {{- end }}
       serviceAccountName: {{ include "minio.serviceAccountName" . | quote }}
-{{- if and .Values.securityContext.enabled .Values.persistence.enabled }}
-      securityContext:
-        runAsUser: {{ .Values.securityContext.runAsUser }}
-        runAsGroup: {{ .Values.securityContext.runAsGroup }}
-        fsGroup: {{ .Values.securityContext.fsGroup }}
-{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -187,6 +181,27 @@ spec:
             - name: {{ $key }}
               value: {{ $val | quote }}
             {{- end}}
+{{- if and .Values.securityContext.enabled .Values.persistence.enabled }}
+          securityContext:
+            runAsUser: {{ .Values.securityContext.runAsUser }}
+            runAsGroup: {{ .Values.securityContext.runAsGroup }}
+            fsGroup: {{ .Values.securityContext.fsGroup }}
+      initContainers:
+        - name: fix-permission
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - chown
+            - -R
+            - {{ .Values.securityContext.runAsUser }}:{{ .Values.securityContext.fsGroup }}
+            - /export
+          volumeMounts:
+            - name: export
+              mountPath: {{ .Values.mountPath }}
+              {{- if .Values.persistence.subPath }}
+              subPath: "{{ .Values.persistence.subPath }}"
+              {{- end }}
+{{- end }}
           livenessProbe:
             httpGet:
               path: /minio/health/live
