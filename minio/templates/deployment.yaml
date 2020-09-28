@@ -242,7 +242,7 @@ spec:
               path: public.crt
             - key: {{ .Values.tls.privateKey }}
               path: private.key
-            - key: {{ .Values.tls.publicCrt }}
+            - key: {{ .Values.tls.caCrt }}
               path: CAs/public.crt
         {{ end }}
 {{- end }}
