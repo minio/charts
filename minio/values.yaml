@@ -215,7 +215,7 @@ defaultBucket:
   ## Purge if bucket exists already
   purge: false
   ## set versioning for bucket true|false
-  versioning: false
+  # versioning: false
 
 ## Create multiple buckets after minio install
 ## Enabling `defaultBucket` will take priority over this list
