@@ -87,6 +87,13 @@ Determine service account name for deployment or statefulset.
 {{- end -}}
 
 {{/*
+Determine name for scc role and rolebinding
+*/}}
+{{- define "minio.sccRoleName" -}}
+{{- printf "%s-%s" "scc" (include "minio.fullname" .) | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
 Properly format optional additional arguments to Minio binary
 */}}
 {{- define "minio.extraArgs" -}}
