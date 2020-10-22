@@ -355,10 +355,19 @@ Then install the chart, specifying that you want to use an existing secret:
 $ helm install --set existingSecret=my-minio-secret minio/minio
 ```
 
-The following fields are expected in the secret
-1. `accesskey` - the access key ID
-2. `secretkey` - the secret key
-3. `gcs_key.json` - The GCS key if you are using the GCS gateway feature. This is optional.
+The following fields are expected in the secret:
+
+| .data.<key> in Secret      | Corresponding variable  | Description                                                                       |
+|:---------------------------|:------------------------|:----------------------------------------------------------------------------------|
+| `accesskey`                | `accessKey`             | Access key ID. Mandatory.                                                         |
+| `secretkey`                | `secretKey`             | Secret key. Mandatory.                                                            |
+| `gcs_key.json`             | `gcsgateway.gcsKeyJson` | GCS key if you are using the GCS gateway feature. Optional                        |
+| `awsAccessKeyId`           | `s3gateway.accessKey`   | S3 access key if you are using the S3 gateway feature. Optional                   |
+| `awsSecretAccessKey`       | `s3gateway.secretKey`   | S3 secret key if you are using the S3 gateway feature. Optional                   |
+| `etcd_client_cert.pem`     | `etcd.clientCert`       | Certificate for SSL/TLS connections to etcd. Optional                             |
+| `etcd_client_cert_key.pem` | `etcd.clientCertKey`    | Corresponding key for certificate above. Mandatory when etcd certificate defined. |
+
+All corresponding variables will be ignored in values file.
 
 Configure TLS
 -------------
