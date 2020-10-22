@@ -61,8 +61,8 @@ priorityClassName: ""
 ## AccessKey and secretKey is generated when not set
 ## Distributed Minio ref: https://docs.minio.io/docs/distributed-minio-quickstart-guide
 ##
-accessKey: "YOURACCESSKEY"
-secretKey: "YOURSECRETKEY"
+accessKey: ""
+secretKey: ""
 certsPath: "/etc/minio/certs/"
 configPathmc: "/etc/minio/mc/"
 mountPath: "/export"
