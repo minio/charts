@@ -76,6 +76,17 @@ Return the appropriate apiVersion for ingress.
 {{- end -}}
 
 {{/*
+Determine secret name.
+*/}}
+{{- define "minio.secretName" -}}
+{{- if .Values.existingSecret -}}
+{{- .Values.existingSecret }}
+{{- else -}}
+{{- include "minio.fullname" . -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Determine service account name for deployment or statefulset.
 */}}
 {{- define "minio.serviceAccountName" -}}

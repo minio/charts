@@ -120,12 +120,12 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+                  name: {{ template "minio.secretName" . }}
                   key: accesskey
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+                  name: {{ template "minio.secretName" . }}
                   key: secretkey
             {{- if .Values.gcsgateway.enabled }}
             - name: GOOGLE_APPLICATION_CREDENTIALS
@@ -156,14 +156,14 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+                  name: {{ template "minio.secretName" . }}
                   key: awsAccessKeyId
             {{- end }}
             {{- if .Values.s3gateway.secretKey }}
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+                  name: {{ template "minio.secretName" . }}
                   key: awsSecretAccessKey
             {{- end }}
             {{- end }}
@@ -198,6 +198,6 @@ spec:
         {{- end }}
         - name: minio-user
           secret:
-            secretName: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+            secretName: {{ template "minio.secretName" . }}
         {{- include "minio.tlsKeysVolume" . | indent 8 }}
 {{- end }}
