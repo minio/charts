@@ -35,9 +35,9 @@ Create chart name and version as used by the chart label.
 Return the appropriate apiVersion for networkpolicy.
 */}}
 {{- define "minio.networkPolicy.apiVersion" -}}
-{{- if semverCompare ">=1.4-0, <1.7-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=1.4-0, <1.7-0" .Capabilities.KubeVersion.Version -}}
 {{- print "extensions/v1beta1" -}}
-{{- else if semverCompare "^1.7-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- else if semverCompare "^1.7-0" .Capabilities.KubeVersion.Version -}}
 {{- print "networking.k8s.io/v1beta1" -}}
 {{- end -}}
 {{- end -}}
@@ -46,10 +46,10 @@ Return the appropriate apiVersion for networkpolicy.
 Return the appropriate apiVersion for deployment.
 */}}
 {{- define "minio.deployment.apiVersion" -}}
-{{- if semverCompare "<1.9-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "apps/v1beta2" -}}
-{{- else -}}
+{{- if .Capabilities.APIVersions.Has "apps/v1/Deployment" -}}
 {{- print "apps/v1" -}}
+{{- else if .Capabilities.APIVersions.Has "apps/v1beta2/Deployment" -}}
+{{- print "apps/v1beta2" -}}
 {{- end -}}
 {{- end -}}
 
@@ -57,10 +57,10 @@ Return the appropriate apiVersion for deployment.
 Return the appropriate apiVersion for statefulset.
 */}}
 {{- define "minio.statefulset.apiVersion" -}}
-{{- if semverCompare "<1.17-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "apps/v1beta2" -}}
-{{- else -}}
+{{- if .Capabilities.APIVersions.Has "apps/v1/StatefulSet" -}}
 {{- print "apps/v1" -}}
+{{- else if .Capabilities.APIVersions.Has "apps/v1beta2/StatefulSet" -}}
+{{- print "apps/v1beta2" -}}
 {{- end -}}
 {{- end -}}
 
