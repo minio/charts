@@ -320,6 +320,7 @@ metrics:
     # scrapeTimeout: 10s
 
 ## ETCD settings: https://github.com/minio/minio/blob/master/docs/sts/etcd.md
+## Define endpoints to enable this section.
 etcd:
   endpoints: []
   pathPrefix: ""
