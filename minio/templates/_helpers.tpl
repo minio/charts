@@ -76,6 +76,17 @@ Return the appropriate apiVersion for ingress.
 {{- end -}}
 
 {{/*
+Determine secret name.
+*/}}
+{{- define "minio.secretName" -}}
+{{- if .Values.existingSecret -}}
+{{- .Values.existingSecret }}
+{{- else -}}
+{{- include "minio.fullname" . -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Determine service account name for deployment or statefulset.
 */}}
 {{- define "minio.serviceAccountName" -}}
@@ -84,6 +95,13 @@ Determine service account name for deployment or statefulset.
 {{- else -}}
 {{- default "default" .Values.serviceAccount.name -}}
 {{- end -}}
+{{- end -}}
+
+{{/*
+Determine name for scc role and rolebinding
+*/}}
+{{- define "minio.sccRoleName" -}}
+{{- printf "%s-%s" "scc" (include "minio.fullname" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*

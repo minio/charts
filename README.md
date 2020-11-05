@@ -152,8 +152,8 @@ The following table lists the configurable parameters of the MinIO chart and the
 | `zones`                                          | Number of zones (applicable only for MinIO distributed mode).                                                                           | `1`                              |
 | `drivesPerNode`                                  | Number of drives per node (applicable only for MinIO distributed mode).                                                                 | `1`                              |
 | `existingSecret`                                 | Name of existing secret with access and secret key.                                                                                     | `""`                             |
-| `accessKey`                                      | Default access key (5 to 20 characters)                                                                                                 | `YOURACCESSKEY`                  |
-| `secretKey`                                      | Default secret key (8 to 40 characters)                                                                                                 | `YOURSECRETKEY`                  |
+| `accessKey`                                      | Default access key (5 to 20 characters)                                                                                                 | random 20 chars                  |
+| `secretKey`                                      | Default secret key (8 to 40 characters)                                                                                                 | random 40 chars                  |
 | `certsPath`                                      | Default certs path location                                                                                                             | `/etc/minio/certs`               |
 | `configPathmc`                                   | Default config file location for MinIO client - mc                                                                                      | `/etc/minio/mc`                  |
 | `mountPath`                                      | Default mount location for persistent drive                                                                                             | `/export`                        |
@@ -214,7 +214,7 @@ The following table lists the configurable parameters of the MinIO chart and the
 | `gcsgateway.projectId`                           | Google cloud project id                                                                                                                 | `""`                             |
 | `nasgateway.enabled`                             | Use MinIO as a [NAS gateway](https://docs.MinIO.io/docs/minio-gateway-for-nas)                                                          | `false`                          |
 | `nasgateway.replicas`                            | Number of NAS gateway instances to be run in parallel on a PV                                                                           | `4`                              |
-| `environment`                                    | Set MinIO server relevant environment variables in `values.yaml` file. MinIO containers will be passed these variables when they start. | `MINIO_API_READY_DEADLINE: "5s"` |
+| `environment`                                    | Set MinIO server relevant environment variables in `values.yaml` file. MinIO containers will be passed these variables when they start. | `MINIO_STORAGE_CLASS_STANDARD: EC:4"` |
 | `metrics.serviceMonitor.enabled`                 | Set this to `true` to create ServiceMonitor for Prometheus operator                                                                     | `false`                          |
 | `metrics.serviceMonitor.additionalLabels`        | Additional labels that can be used so ServiceMonitor will be discovered by Prometheus                                                   | `{}`                             |
 | `metrics.serviceMonitor.namespace`               | Optional namespace in which to create ServiceMonitor                                                                                    | `nil`                            |
@@ -355,10 +355,19 @@ Then install the chart, specifying that you want to use an existing secret:
 $ helm install --set existingSecret=my-minio-secret minio/minio
 ```
 
-The following fields are expected in the secret
-1. `accesskey` - the access key ID
-2. `secretkey` - the secret key
-3. `gcs_key.json` - The GCS key if you are using the GCS gateway feature. This is optional.
+The following fields are expected in the secret:
+
+| .data.<key> in Secret      | Corresponding variable  | Description                                                                       |
+|:---------------------------|:------------------------|:----------------------------------------------------------------------------------|
+| `accesskey`                | `accessKey`             | Access key ID. Mandatory.                                                         |
+| `secretkey`                | `secretKey`             | Secret key. Mandatory.                                                            |
+| `gcs_key.json`             | `gcsgateway.gcsKeyJson` | GCS key if you are using the GCS gateway feature. Optional                        |
+| `awsAccessKeyId`           | `s3gateway.accessKey`   | S3 access key if you are using the S3 gateway feature. Optional                   |
+| `awsSecretAccessKey`       | `s3gateway.secretKey`   | S3 secret key if you are using the S3 gateway feature. Optional                   |
+| `etcd_client_cert.pem`     | `etcd.clientCert`       | Certificate for SSL/TLS connections to etcd. Optional                             |
+| `etcd_client_cert_key.pem` | `etcd.clientCertKey`    | Corresponding key for certificate above. Mandatory when etcd certificate defined. |
+
+All corresponding variables will be ignored in values file.
 
 Configure TLS
 -------------

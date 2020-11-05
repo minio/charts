@@ -70,12 +70,12 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+                  name: {{ template "minio.secretName" . }}
                   key: accesskey
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ if .Values.existingSecret }}{{ .Values.existingSecret }}{{ else }}{{ template "minio.fullname" . }}{{ end }}
+                  name: {{ template "minio.secretName" . }}
                   key: secretkey
             #  mc admin prometheus generate don't really connect to remote server, TLS cert isn't required
             - name: MC_HOST_target

@@ -61,12 +61,28 @@ priorityClassName: ""
 ## AccessKey and secretKey is generated when not set
 ## Distributed Minio ref: https://docs.minio.io/docs/distributed-minio-quickstart-guide
 ##
-existingSecret: ""
-accessKey: "YOURACCESSKEY"
-secretKey: "YOURSECRETKEY"
+accessKey: ""
+secretKey: ""
 certsPath: "/etc/minio/certs/"
 configPathmc: "/etc/minio/mc/"
 mountPath: "/export"
+
+## Use existing Secret that store following variables:
+##
+## | Chart var             | .data.<key> in Secret    |
+## |:----------------------|:-------------------------|
+## | accessKey             | accesskey                |
+## | secretKey             | secretkey                |
+## | gcsgateway.gcsKeyJson | gcs_key.json             |
+## | s3gateway.accessKey   | awsAccessKeyId           |
+## | s3gateway.secretKey   | awsSecretAccessKey       |
+## | etcd.clientCert       | etcd_client_cert.pem     |
+## | etcd.clientCertKey    | etcd_client_cert_key.pem |
+##
+## All mentioned variables will be ignored in values file.
+## .data.accesskey and .data.secretkey are mandatory,
+## others depend on enabled status of corresponding sections.
+existingSecret: ""
 
 ## Override the root directory which the minio server should serve from.
 ## If left empty, it defaults to the value of {{ .Values.mountPath }}
@@ -288,7 +304,6 @@ nasgateway:
 ## Use this field to add environment variables relevant to Minio server. These fields will be passed on to Minio container(s)
 ## when Chart is deployed
 environment:
-  MINIO_API_READY_DEADLINE: "5s"
   ## Please refer for comprehensive list https://docs.minio.io/docs/minio-server-configuration-guide.html
 
 networkPolicy:
@@ -320,6 +335,7 @@ metrics:
     # scrapeTimeout: 10s
 
 ## ETCD settings: https://github.com/minio/minio/blob/master/docs/sts/etcd.md
+## Define endpoints to enable this section.
 etcd:
   endpoints: []
   pathPrefix: ""
