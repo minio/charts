@@ -33,7 +33,7 @@ spec:
     app: {{ template "minio.name" . }}
     release: {{ .Release.Name }}
 ---
-apiVersion: {{ template "minio.statefulset.apiVersion" . }}
+apiVersion: {{ template "minio.statefulset.apiVersion" . | default "apps/v1beta2" }}
 kind: StatefulSet
 metadata:
   name: {{ template "minio.fullname" . }}
