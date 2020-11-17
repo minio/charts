@@ -159,7 +159,7 @@ spec:
                   name: {{ template "minio.secretName" . }}
                   key: awsAccessKeyId
             {{- end }}
-            {{- if and .Values.s3gateway.secretKey .Values.existingSecret }}
+            {{- if or .Values.s3gateway.secretKey .Values.existingSecret }}
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
