@@ -140,6 +140,12 @@ persistence:
   ##
   subPath: ""
 
+  ## If fixPermission.enabled is true the use initContainer to chown /export to securityContext.runAsUser:securityContext.fsGroup
+  ## Requires securityContext.enabled: true, persistence.enabled: true
+  ##
+  fixPermission:
+    enabaled: false
+
 ## Expose the Minio service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
 ## ref: http://kubernetes.io/docs/user-guide/services/
