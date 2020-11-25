@@ -63,6 +63,23 @@ spec:
         runAsGroup: {{ .Values.securityContext.runAsGroup }}
         fsGroup: {{ .Values.securityContext.fsGroup }}
 {{- end }}
+      {{- if and .Values.securityContext.enabled .Values.persistence.enabled .Values.persistence.fixPermission.enabled }}
+      initContainers:
+        - name: fix-permission
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - chown
+            - -R
+            - {{ .Values.securityContext.runAsUser }}:{{ .Values.securityContext.fsGroup }}
+            - /export
+          volumeMounts:
+            - name: export
+              mountPath: {{ .Values.mountPath }}
+              {{- if .Values.persistence.subPath }}
+              subPath: "{{ .Values.persistence.subPath }}"
+              {{- end }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
