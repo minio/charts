@@ -307,6 +307,17 @@ nasgateway:
   # a label like "pv: <value>", use value here.
   pv: ~
 
+## Enable HPA for gateway deployment
+## Do not specify *gateway.replicas if enabling HPA because
+## this can cause unexpected behaviour when performing a helm
+## upgrade while the HPA is active.
+gatewayHpa:
+  enabled: false
+  minReplicas: 4
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 100
+  targetMemoryUtilizationPercentage: 100
+
 ## Use this field to add environment variables relevant to Minio server. These fields will be passed on to Minio container(s)
 ## when Chart is deployed
 environment: {}
