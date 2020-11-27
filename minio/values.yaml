@@ -308,9 +308,6 @@ nasgateway:
   pv: ~
 
 ## Enable HPA for gateway deployment
-## Do not specify *gateway.replicas if enabling HPA because
-## this can cause unexpected behaviour when performing a helm
-## upgrade while the HPA is active.
 gatewayHpa:
   enabled: false
   minReplicas: 4

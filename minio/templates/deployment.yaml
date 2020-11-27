@@ -28,16 +28,16 @@ spec:
       maxSurge: {{ .Values.DeploymentUpdate.maxSurge }}
       maxUnavailable: {{ .Values.DeploymentUpdate.maxUnavailable }}
     {{- end}}
-  {{- if and .Values.nasgateway.enabled .Values.nasgateway.replicas }}
+  {{- if and .Values.nasgateway.enabled (not .Values.gatewayHpa.enabled) }}
   replicas: {{ .Values.nasgateway.replicas }}
   {{- end }}
-  {{- if and .Values.s3gateway.enabled .Values.s3gateway.replicas }}
+  {{- if and .Values.s3gateway.enabled (not .Values.gatewayHpa.enabled) }}
   replicas: {{ .Values.s3gateway.replicas }}
   {{- end }}
-  {{- if and .Values.azuregateway.enabled .Values.azuregateway.replicas }}
+  {{- if and .Values.azuregateway.enabled (not .Values.gatewayHpa.enabled) }}
   replicas: {{ .Values.azuregateway.replicas }}
   {{- end }}
-  {{- if and .Values.gcsgateway.enabled .Values.gcsgateway.replicas }}
+  {{- if and .Values.gcsgateway.enabled (not .Values.gatewayHpa.enabled) }}
   replicas: {{ .Values.gcsgateway.replicas }}
   {{- end }}
   selector:
