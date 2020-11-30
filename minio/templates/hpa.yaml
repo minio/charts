@@ -1,7 +1,4 @@
 {{- if and .Values.gatewayHpa.enabled (or .Values.nasgateway.enabled .Values.s3gateway.enabled .Values.azuregateway.enabled .Values.gcsgateway.enabled) }}
-  {{- if semverCompare "<1.17-0" .Capabilities.KubeVersion.Version -}}
-    {{- fail "<1.17-0 unsupported" -}}
-  {{- end -}}
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
