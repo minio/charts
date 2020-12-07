@@ -57,7 +57,7 @@ Return the appropriate apiVersion for deployment.
 Return the appropriate apiVersion for statefulset.
 */}}
 {{- define "minio.statefulset.apiVersion" -}}
-{{- if semverCompare "<1.17-0" .Capabilities.KubeVersion.Version -}}
+{{- if semverCompare "<1.16-0" .Capabilities.KubeVersion.Version -}}
 {{- print "apps/v1beta2" -}}
 {{- else -}}
 {{- print "apps/v1" -}}
