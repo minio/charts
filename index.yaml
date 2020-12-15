@@ -19,8 +19,8 @@ entries:
     sources:
     - https://github.com/minio/minio
     urls:
-    - https://helm.min.io/releases/minio-8.0.8.tgz
-    version: 8.0.8
+    - https://helm.min.io/releases/minio-8.0.9.tgz
+    version: 8.0.9
   - apiVersion: v1
     appVersion: master
     created: "2020-12-11T08:43:58.589066989-08:00"

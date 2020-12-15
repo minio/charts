@@ -330,6 +330,7 @@ metrics:
   serviceMonitor:
     enabled: false
     additionalLabels: {}
+    relabelConfigs: {}
     # namespace: monitoring
     # interval: 30s
     # scrapeTimeout: 10s

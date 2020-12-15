@@ -28,6 +28,9 @@ spec:
       {{- if .Values.metrics.serviceMonitor.scrapeTimeout }}
       scrapeTimeout: {{ .Values.metrics.serviceMonitor.scrapeTimeout }}
       {{- end }}
+      {{- if .Values.metrics.serviceMonitor.relabelConfigs }}
+{{ toYaml .Values.metrics.serviceMonitor.relabelConfigs | indent 6 }}
+      {{- end }}
       bearerTokenSecret:
         name: {{ template "minio.fullname" . }}-prometheus
         key: token
