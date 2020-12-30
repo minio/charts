@@ -38,6 +38,12 @@ helmKubectlJqImage:
 ##
 mode: standalone
 
+## Additional labels to include with deployment or statefulset
+additionalLabels: []
+
+## Additional annotations to include with deployment or statefulset
+additionalAnnotations: []
+
 ## Additional arguments to pass to minio binary
 extraArgs: []
 
