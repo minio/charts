@@ -163,7 +163,8 @@ service:
   externalIPs: []
   #   - externalIp1
 
-  annotations: {}
+  annotations:
+    {}
     # prometheus.io/scrape: 'true'
     # prometheus.io/path:   '/minio/prometheus/metrics'
     # prometheus.io/port:   '9000'
@@ -176,10 +177,12 @@ imagePullSecrets: []
 
 ingress:
   enabled: false
-  labels: {}
+  labels:
+    {}
     # node-role.kubernetes.io/ingress: platform
 
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     # kubernetes.io/ingress.allow-http: "false"
@@ -239,7 +242,8 @@ defaultBucket:
 ## Create multiple buckets after minio install
 ## Enabling `defaultBucket` will take priority over this list
 ##
-buckets: []
+buckets:
+  []
   # - name: bucket1
   #   policy: none
   #   purge: false
@@ -309,7 +313,8 @@ nasgateway:
 
 ## Use this field to add environment variables relevant to Minio server. These fields will be passed on to Minio container(s)
 ## when Chart is deployed
-environment: {}
+environment:
+  {}
   ## Please refer for comprehensive list https://docs.minio.io/docs/minio-server-configuration-guide.html
   ## MINIO_DOMAIN: "chart-example.local"
   ## MINIO_BROWSER: "off"
@@ -351,3 +356,13 @@ etcd:
   corednsPathPrefix: ""
   clientCert: ""
   clientCertKey: ""
+
+## Cache settings
+cache:
+  enabled: false
+  exclude: ""
+  quota: 80
+  after: 3
+  watermark:
+    low: 70
+    height: 90

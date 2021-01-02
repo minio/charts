@@ -119,6 +119,10 @@ spec:
               mountPath: "/etc/credentials"
               readOnly: true
             {{- end }}
+            {{- if .Values.cache.enabled }
+            - name: cache
+              mountPath: "/cache"
+            {{- end }}
             {{- include "minio.tlsKeysVolumeMount" . | indent 12 }}
           ports:
             - name: {{ $scheme }}
@@ -174,6 +178,22 @@ spec:
                   key: awsSecretAccessKey
             {{- end }}
             {{- end }}
+            {{- if .Values.cache.enabled }}
+            - name: MINIO_CACHE
+              value: "on"
+            - name: MINIO_CACHE_DRIVES
+              value: "/cache"
+            - name: MINIO_CACHE_EXCLUDE
+              value: {{ .Values.cache.exclude }}
+            - name: MINIO_CACHE_QUOTA
+              value: {{ .Values.cache.quota }}
+            - name: MINIO_CACHE_AFTER
+              value: {{ .Values.cache.after }}
+            - name: MINIO_CACHE_WATERMARK_LOW
+              value: {{ .Values.cache.watermark.low }}
+            - name: MINIO_CACHE_WATERMARK_HIGH
+              value: {{ .Values.cache.watermark.high }}
+            {{- end }}
             {{- range $key, $val := .Values.environment }}
             - name: {{ $key }}
               value: {{ $val | quote }}
@@ -206,5 +226,9 @@ spec:
         - name: minio-user
           secret:
             secretName: {{ template "minio.secretName" . }}
+        {{- if .Values.cache.enabed }}
+        - name: cache
+          emptyDir: {}
+        {{- end }}
         {{- include "minio.tlsKeysVolume" . | indent 8 }}
 {{- end }}
