@@ -67,7 +67,11 @@ createBucket() {
   # Create the bucket if it does not exist
   if ! checkBucketExists $BUCKET ; then
     echo "Creating bucket '$BUCKET'"
+    {{- if .Values.s3gateway.enabled }}
+    ${MC} mb myminio/$BUCKET --region={{ .Values.s3gateway.bucketRegion }}
+    {{- else }}
     ${MC} mb myminio/$BUCKET
+    {{- end }}
   else
     echo "Bucket '$BUCKET' already exists."
   fi
