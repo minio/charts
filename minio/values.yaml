@@ -38,6 +38,12 @@ helmKubectlJqImage:
 ##
 mode: standalone
 
+## Additional labels to include with deployment or statefulset
+additionalLabels: []
+
+## Additional annotations to include with deployment or statefulset
+additionalAnnotations: []
+
 ## Additional arguments to pass to minio binary
 extraArgs: []
 
@@ -304,8 +310,10 @@ nasgateway:
 
 ## Use this field to add environment variables relevant to Minio server. These fields will be passed on to Minio container(s)
 ## when Chart is deployed
-environment:
+environment: {}
   ## Please refer for comprehensive list https://docs.minio.io/docs/minio-server-configuration-guide.html
+  ## MINIO_DOMAIN: "chart-example.local"
+  ## MINIO_BROWSER: "off"
 
 networkPolicy:
   enabled: false
@@ -331,6 +339,7 @@ metrics:
   serviceMonitor:
     enabled: false
     additionalLabels: {}
+    relabelConfigs: {}
     # namespace: monitoring
     # interval: 30s
     # scrapeTimeout: 10s
