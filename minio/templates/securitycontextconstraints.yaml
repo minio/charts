@@ -8,7 +8,6 @@ metadata:
     chart: {{ template "minio.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-priority: 10
 allowHostDirVolumePlugin: false
 allowHostIPC: false
 allowHostNetwork: false
