@@ -75,15 +75,17 @@ mountPath: "/export"
 
 ## Use existing Secret that store following variables:
 ##
-## | Chart var             | .data.<key> in Secret    |
-## |:----------------------|:-------------------------|
-## | accessKey             | accesskey                |
-## | secretKey             | secretkey                |
-## | gcsgateway.gcsKeyJson | gcs_key.json             |
-## | s3gateway.accessKey   | awsAccessKeyId           |
-## | s3gateway.secretKey   | awsSecretAccessKey       |
-## | etcd.clientCert       | etcd_client_cert.pem     |
-## | etcd.clientCertKey    | etcd_client_cert_key.pem |
+## | Chart var                   | .data.<key> in Secret    |
+## |:----------------------------|:-------------------------|
+## | accessKey                   | accesskey                |
+## | secretKey                   | secretkey                |
+## | gcsgateway.gcsKeyJson       | gcs_key.json             |
+## | s3gateway.accessKey         | awsAccessKeyId           |
+## | s3gateway.secretKey         | awsSecretAccessKey       |
+## | azuregateway.storageAccount | azureStorageAccount      |
+## | azuregateway.storageKey     | azureStorageKey          |
+## | etcd.clientCert             | etcd_client_cert.pem     |
+## | etcd.clientCertKey          | etcd_client_cert_key.pem |
 ##
 ## All mentioned variables will be ignored in values file.
 ## .data.accesskey and .data.secretkey are mandatory,
@@ -283,6 +285,8 @@ azuregateway:
   enabled: false
   # Number of parallel instances
   replicas: 4
+  storageAccount: ""
+  storageKey: ""
 
 ## Use minio as GCS (Google Cloud Storage) gateway, you should disable data persistence so no volume claim are created.
 ## https://docs.minio.io/docs/minio-gateway-for-gcs
