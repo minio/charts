@@ -1,4 +1,4 @@
-> NOTE: This helm chart is in code freeze i.e we will only update MinIO releases occastionally by bumping up the version. For latest features you are advised to start using our [MinIO operator](https://github.com/minio/operator).
+> NOTE: This helm chart is being deprecated and this project will cease to take new updates from April 2020. For all future requirements you are advised to start using our [MinIO operator](https://github.com/minio/operator).
 
 MinIO
 =====
