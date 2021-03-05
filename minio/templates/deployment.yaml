@@ -107,9 +107,9 @@ spec:
           {{- end }}
           {{- end }}
           volumeMounts:
-            {{- if and .Values.persistence.enabled (not .Values.gcsgateway.enabled) (not .Values.azuregateway.enabled) (not .Values.s3gateway.enabled) }}
-            - name: export
-              mountPath: {{ .Values.mountPath }}
+            {{- if .Values.persistence.enabled }}
+            - name: {{ .Values.persistence.VolumeName }}
+              mountPath: {{ .Values.persistence.mountPath }}
               {{- if .Values.persistence.subPath }}
               subPath: "{{ .Values.persistence.subPath }}"
               {{- end }}
@@ -194,9 +194,8 @@ spec:
 {{ toYaml . | indent 8 }}
 {{- end }}
       volumes:
-        {{- if and (not .Values.gcsgateway.enabled) (not .Values.azuregateway.enabled) (not .Values.s3gateway.enabled) }}
-        - name: export
         {{- if .Values.persistence.enabled }}
+        - name: {{ .Values.persistence.VolumeName }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "minio.fullname" .) }}
         {{- else }}
@@ -207,4 +206,3 @@ spec:
           secret:
             secretName: {{ template "minio.secretName" . }}
         {{- include "minio.tlsKeysVolume" . | indent 8 }}
-{{- end }}
