@@ -3,7 +3,27 @@ entries:
   minio:
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.468657476-08:00"
+    created: "2021-02-15T20:45:45.614938105-08:00"
+    description: High Performance, Kubernetes Native Object Storage
+    digest: 0bac6eea54eb93de4e97a4961f592f652a1738ea584982015480222dd2e8d841
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - https://helm.min.io/releases/minio-8.0.10.tgz
+    version: 8.0.10
+  - apiVersion: v1
+    appVersion: master
+    created: "2021-02-15T20:45:45.633488045-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 6fbf8a38939ad826e669b7a0a2b53d05310eddf91a115585aa481b48ffe982de
     home: https://min.io
@@ -23,7 +43,7 @@ entries:
     version: 8.0.9
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.467041207-08:00"
+    created: "2021-02-15T20:45:45.631577206-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 556bbcdf8f945066373b9f12882c2ecfea9f17fbd7f9bba5a6d9fdd0e349aa22
     home: https://min.io
@@ -43,7 +63,7 @@ entries:
     version: 8.0.8
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.465336136-08:00"
+    created: "2021-02-15T20:45:45.629484392-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: bf24e43d6a8bc61e59262371931871bb7057ba82d7c2478e9ce9a4d714bab439
     home: https://min.io
@@ -63,7 +83,7 @@ entries:
     version: 8.0.7
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.463763097-08:00"
+    created: "2021-02-15T20:45:45.627565347-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 58125fc2ffd98bb5526a3335a868d0782865191cbea5744b8d36f07446152760
     home: https://min.io
@@ -83,7 +103,7 @@ entries:
     version: 8.0.6
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.462066164-08:00"
+    created: "2021-02-15T20:45:45.625492593-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 65b7ed48450187d31a38e0f532b5b03de58953e57c34d3a12a11fb749055dd9a
     home: https://min.io
@@ -103,7 +123,7 @@ entries:
     version: 8.0.5
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.45887539-08:00"
+    created: "2021-02-15T20:45:45.623104994-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 225c29aad82311294f831ed6ef2bbcba9e1473cc4e2c0d3f15a9c3282a7903d5
     home: https://min.io
@@ -123,7 +143,7 @@ entries:
     version: 8.0.3
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.456913265-08:00"
+    created: "2021-02-15T20:45:45.620551906-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 781876a1cc1e5ab119fc437eff8d5c130ec8393da05177c71edca87ab6138782
     home: https://min.io
@@ -143,7 +163,7 @@ entries:
     version: 8.0.2
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.45485078-08:00"
+    created: "2021-02-15T20:45:45.610900192-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 27223458c38b25f55d9c47f6bdf66959a16289db062310a211a25617328251ea
     home: https://min.io
@@ -163,7 +183,7 @@ entries:
     version: 8.0.0
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.452587145-08:00"
+    created: "2021-02-15T20:45:45.607265912-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 9f3079ab50ffd2b2c7a991e83d1a1f3e2ebfef859fe43829427c7d6b10e28fa9
     home: https://min.io
@@ -183,7 +203,7 @@ entries:
     version: 7.2.2
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.45028597-08:00"
+    created: "2021-02-15T20:45:45.603490989-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 9b3d5b11d12a3f64c42137572d8cad4409919d7774aa70e7638729c5dca21b8d
     home: https://min.io
@@ -203,7 +223,7 @@ entries:
     version: 7.2.1
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.447615771-08:00"
+    created: "2021-02-15T20:45:45.59967441-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 2074f43792607d24a9e4e1d2d8fab30a9425441f304331ca7ef50d011544df58
     home: https://min.io
@@ -223,7 +243,7 @@ entries:
     version: 7.1.2
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.444659393-08:00"
+    created: "2021-02-15T20:45:45.595659897-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 22b0421ea4fbd42d6b151f83f5d2f2cc7c4af8f169ef419e4809794a36d97602
     home: https://min.io
@@ -243,7 +263,7 @@ entries:
     version: 7.1.1
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.439983051-08:00"
+    created: "2021-02-15T20:45:45.591696827-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: c6f0c84272d110321dc0dfeadb30a916c8679132329e06feeab14f3707589d1d
     home: https://min.io
@@ -263,7 +283,7 @@ entries:
     version: 7.1.0
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.432722846-08:00"
+    created: "2021-02-15T20:45:45.581985332-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: d63478c630ac3c9565e09a96dfebd5258b17d818056a83007a80577d85e218bb
     home: https://min.io
@@ -283,7 +303,7 @@ entries:
     version: 7.0.4
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.426664524-08:00"
+    created: "2021-02-15T20:45:45.576300722-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 42507857302ab1939cbe2ebdd7044dc06afbd8b0525072dc8e8e58f18875ff58
     home: https://min.io
@@ -303,7 +323,7 @@ entries:
     version: 7.0.2
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.421496679-08:00"
+    created: "2021-02-15T20:45:45.570375421-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 2d7cdbb323d072d0903420464a5a549728a15a2c78638b4d57a5ab6c87fb489e
     home: https://min.io
@@ -323,7 +343,7 @@ entries:
     version: 7.0.1
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.416114881-08:00"
+    created: "2021-02-15T20:45:45.564680933-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: bac86782d35b0d904ec1226d182addf9c31c76153a920915405763336d84efc9
     home: https://min.io
@@ -343,7 +363,7 @@ entries:
     version: 7.0.0
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.331979155-08:00"
+    created: "2021-02-15T20:45:45.480169853-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 8f5283bcf6dfe066a8703ebc60b6252f53bfc4b86a8e3050ccd7593359afa863
     home: https://min.io
@@ -363,7 +383,7 @@ entries:
     version: 6.3.1
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.329882778-08:00"
+    created: "2021-02-15T20:45:45.478294893-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: e53e72bb8ab443c0892b9c05f674918a76a6e67d0f367f838966d0db19821596
     home: https://min.io
@@ -383,7 +403,7 @@ entries:
     version: 6.1.2
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.326847069-08:00"
+    created: "2021-02-15T20:45:45.476795365-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 2d987aed57257ce5ea27eb03b567098efd5ec98600cac0475f90178aeb861caf
     home: https://min.io
@@ -403,7 +423,7 @@ entries:
     version: 6.1.1
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.325093352-08:00"
+    created: "2021-02-15T20:45:45.473786603-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 4b8ed6d740ea0a67b9f48101cf3925e1907a0c9ebd28d669394758e7bd54db20
     home: https://min.io
@@ -423,7 +443,7 @@ entries:
     version: 6.0.5
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.323140587-08:00"
+    created: "2021-02-15T20:45:45.472186518-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: add17beba527587db0fb1c1ded5d4f6de42962fa21fb5bce71f8bf15fd962b5b
     home: https://min.io
@@ -443,7 +463,7 @@ entries:
     version: 6.0.4
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.321555908-08:00"
+    created: "2021-02-15T20:45:45.470515903-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 551a6331531945027fafe4ac1adab0909f2dd33b0d976abb2f6ff1bfc2a3cbc6
     home: https://min.io
@@ -465,7 +485,7 @@ entries:
     version: 6.0.3
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.31990564-08:00"
+    created: "2021-02-15T20:45:45.468416033-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 1b9f742d7c26256ab60722f5d424bca20a05b24996b5c448696dc298c95d460d
     home: https://min.io
@@ -487,7 +507,7 @@ entries:
     version: 6.0.2
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.318480671-08:00"
+    created: "2021-02-15T20:45:45.467053904-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: 7438ad4fd3ac5b35d9ceb1f4be407aa93a6c20d1f59d753fadb123a0f3a251f6
     home: https://min.io
@@ -509,7 +529,7 @@ entries:
     version: 6.0.1
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.317216306-08:00"
+    created: "2021-02-15T20:45:45.465746429-08:00"
     description: High Performance, Kubernetes Native Object Storage
     digest: ea0a022b88bc91c1c506bd328b2e170287a09903b7302019e9e771c43cbe8937
     home: https://min.io
@@ -531,7 +551,7 @@ entries:
     version: 6.0.0
   - apiVersion: v1
     appVersion: master
-    created: "2020-12-29T12:25:52.315528721-08:00"
+    created: "2021-02-15T20:45:45.463604089-08:00"
     description: MinIO is a high performance data infrastructure for machine learning,
       analytics and application data workloads.
     digest: 866c71c9e95147eef400cdf538400b35611d0bdbc895c60bf1d4df8ce7eef69a
@@ -552,4 +572,4 @@ entries:
     urls:
     - https://helm.min.io/releases/minio-5.0.32.tgz
     version: 5.0.32
-generated: "2020-12-29T12:25:52.312392862-08:00"
+generated: "2021-02-15T20:45:45.461686362-08:00"

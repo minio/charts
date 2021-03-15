@@ -1,6 +1,14 @@
-> NOTE: This helm chart is in code freeze i.e we will only update MinIO releases occastionally by bumping up the version. For latest features you are advised to start using our [MinIO operator](https://github.com/minio/operator).
+# NOTE: This helm chart is being deprecated and this project will cease to take new updates from April 2021. All users are advised to migrate to our [MinIO operator](https://github.com/minio/operator). MinIO operator supports [helm chart](https://github.com/minio/operator/tree/master/helm/minio-operator).
+## To get started
 
-MinIO
+```bash
+helm repo remove minio
+helm repo add minio https://operator.min.io/
+helm install --namespace minio-operator --create-namespace --generate-name minio/minio-operator
+kubectl apply -f https://github.com/minio/operator/blob/master/examples/tenant.yaml
+```
+
+# MinIO (legacy docs)
 =====
 
 [MinIO](https://min.io) is a High Performance Object Storage released under Apache License v2.0. It is API compatible with Amazon S3 cloud storage service. Use MinIO to build high performance infrastructure for machine learning, analytics and application data workloads.
