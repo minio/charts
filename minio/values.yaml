@@ -210,6 +210,12 @@ securityContext:
   runAsUser: 1000
   runAsGroup: 1000
   fsGroup: 1000
+  # If you have trouble with volume mounts taking a very long time, have a look at
+  # https://v1-18.docs.kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods
+  # and consider changing fsGroupChangePolicy to "OnRootMismatch".
+  # Please note, this only works from Kubernetes 1.18 onwards and is an alpha feature
+  # in Kubernetes 1.18 and 1.19 and therefore needs to be enabled with a feature gate.
+  fsGroupChangePolicy: Always
 
 # Additational pod annotations
 podAnnotations: {}

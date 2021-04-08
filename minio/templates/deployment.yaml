@@ -69,6 +69,9 @@ spec:
         runAsUser: {{ .Values.securityContext.runAsUser }}
         runAsGroup: {{ .Values.securityContext.runAsGroup }}
         fsGroup: {{ .Values.securityContext.fsGroup }}
+        {{- if semverCompare ">=1.18-0" .Capabilities.KubeVersion.Version }}
+        fsGroupChangePolicy: {{ .Values.securityContext.fsGroupChangePolicy }}
+        {{- end }}
 {{- end }}
       containers:
         - name: {{ .Chart.Name }}
