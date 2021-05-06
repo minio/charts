@@ -221,6 +221,8 @@ The following table lists the configurable parameters of the MinIO chart and the
 | `s3gateway.secretKey`                            | Secret key of S3 compatible service                                                                                                     | `""`                             |
 | `azuregateway.enabled`                           | Use MinIO as an [azure gateway](https://docs.minio.io/docs/minio-gateway-for-azure)                                                     | `false`                          |
 | `azuregateway.replicas`                          | Number of azure gateway instances to run in parallel                                                                                    | `4`                              |
+| `azuregateway.storageAccount`                    | Storage account name to access Azure Storage                                                                                            | `""`                             |
+| `azuregateway.storageKey`                        | Secret storage account key to access Azure Storage                                                                                      | `""`                             |
 | `gcsgateway.enabled`                             | Use MinIO as a [Google Cloud Storage gateway](https://docs.minio.io/docs/minio-gateway-for-gcs)                                         | `false`                          |
 | `gcsgateway.gcsKeyJson`                          | credential json file of service account key                                                                                             | `""`                             |
 | `gcsgateway.projectId`                           | Google cloud project id                                                                                                                 | `""`                             |
@@ -370,15 +372,17 @@ $ helm install --set existingSecret=my-minio-secret minio/minio
 
 The following fields are expected in the secret:
 
-| .data.<key> in Secret      | Corresponding variable  | Description                                                                       |
-|:---------------------------|:------------------------|:----------------------------------------------------------------------------------|
-| `accesskey`                | `accessKey`             | Access key ID. Mandatory.                                                         |
-| `secretkey`                | `secretKey`             | Secret key. Mandatory.                                                            |
-| `gcs_key.json`             | `gcsgateway.gcsKeyJson` | GCS key if you are using the GCS gateway feature. Optional                        |
-| `awsAccessKeyId`           | `s3gateway.accessKey`   | S3 access key if you are using the S3 gateway feature. Optional                   |
-| `awsSecretAccessKey`       | `s3gateway.secretKey`   | S3 secret key if you are using the S3 gateway feature. Optional                   |
-| `etcd_client_cert.pem`     | `etcd.clientCert`       | Certificate for SSL/TLS connections to etcd. Optional                             |
-| `etcd_client_cert_key.pem` | `etcd.clientCertKey`    | Corresponding key for certificate above. Mandatory when etcd certificate defined. |
+| .data.<key> in Secret      | Corresponding variable          | Description                                                                           |
+|:---------------------------|:--------------------------------|:--------------------------------------------------------------------------------------|
+| `accesskey`                | `accessKey`                     | Access key ID. Mandatory.                                                             |
+| `secretkey`                | `secretKey`                     | Secret key. Mandatory.                                                                |
+| `gcs_key.json`             | `gcsgateway.gcsKeyJson`         | GCS key if you are using the GCS gateway feature. Optional                            |
+| `awsAccessKeyId`           | `s3gateway.accessKey`           | S3 access key if you are using the S3 gateway feature. Optional                       |
+| `awsSecretAccessKey`       | `s3gateway.secretKey`           | S3 secret key if you are using the S3 gateway feature. Optional                       |
+| `azureStorageAccount`      | `azuregateway.storageAccount`   | Azure Storage account name if you are using the Azure gateway feature. Optional       |
+| `azureStorageKey`          | `azuregateway.storageKey`       | Azure Storage account secret key if you are using the Azure gateway feature. Optional |
+| `etcd_client_cert.pem`     | `etcd.clientCert`               | Certificate for SSL/TLS connections to etcd. Optional                                 |
+| `etcd_client_cert_key.pem` | `etcd.clientCertKey`            | Corresponding key for certificate above. Mandatory when etcd certificate defined.     |
 
 All corresponding variables will be ignored in values file.
 
