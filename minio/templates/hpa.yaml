@@ -1,0 +1,35 @@
+{{- if and .Values.gatewayHpa.enabled (or .Values.nasgateway.enabled .Values.s3gateway.enabled .Values.azuregateway.enabled .Values.gcsgateway.enabled) }}
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ template "minio.fullname" . }}
+  labels:
+    app: {{ template "minio.name" . }}
+    chart: {{ template "minio.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  scaleTargetRef:
+    apiVersion: {{ template "minio.deployment.apiVersion" . }}
+    kind: Deployment
+    name: {{ template "minio.fullname" . }}
+  minReplicas: {{ .Values.gatewayHpa.minReplicas }}
+  maxReplicas: {{ .Values.gatewayHpa.maxReplicas }}
+  metrics:
+  {{- with required "gatewayHpa.targetCPUUtilizationPercentage" .Values.gatewayHpa.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ . }}
+  {{- end }}
+  {{- with required "gatewayHpa.targetMemoryUtilizationPercentage" .Values.gatewayHpa.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ . }}
+  {{- end }}
+{{- end }}
